@@ -4,10 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Travels(val imagen:Int, )
-class TravelAdapter(var items: ArrayList<Travels>) : RecyclerView.Adapter<TravelAdapter.TarjViewHolder>() {
+class Cafe(val imagen:Int,val cadena: Int, val cadena2:Int )
+class CafeAdapter(var items: ArrayList<Cafe>) : RecyclerView.Adapter<CafeAdapter.TarjViewHolder>() {
     lateinit var onClick : (View) -> Unit
 
     init {
@@ -16,18 +17,26 @@ class TravelAdapter(var items: ArrayList<Travels>) : RecyclerView.Adapter<Travel
 
     class TarjViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var laImagen: ImageView
+        private var texto: TextView
+        private var subTexto: TextView
+
         init {
-            laImagen=itemView.findViewById(R.id.imageView)
+            laImagen=itemView.findViewById(R.id.cafeImagen)
+            texto = itemView.findViewById(R.id.titulo)
+            subTexto=itemView.findViewById(R.id.subtitulo)
+
         }
 
-        fun bindTarjeta(t: Travels, onClick: (View) -> Unit) = with(itemView) {
+        fun bindTarjeta(t: Cafe, onClick: (View) -> Unit) = with(itemView) {
             laImagen.setImageResource(t.imagen)
+            texto.setText(t.cadena)
+            subTexto.setText(t.cadena2)
             setOnClickListener { onClick(itemView) }
         }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): TarjViewHolder {
-        val itemView = LayoutInflater.from(viewGroup.context).inflate(R.layout.imagenes, viewGroup, false)
+        val itemView = LayoutInflater.from(viewGroup.context).inflate(R.layout.cafe, viewGroup, false)
         return TarjViewHolder(itemView)
     }
 
