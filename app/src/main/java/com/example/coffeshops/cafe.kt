@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -19,11 +20,15 @@ class CafeAdapter(var items: ArrayList<Cafe>) : RecyclerView.Adapter<CafeAdapter
         private var laImagen: ImageView
         private var texto: TextView
         private var subTexto: TextView
+        private val rb: RatingBar
+        private var puntos:TextView
 
         init {
-            laImagen=itemView.findViewById(R.id.cafeImagen)
-            texto = itemView.findViewById(R.id.titulo)
-            subTexto=itemView.findViewById(R.id.subtitulo)
+            laImagen=itemView.findViewById(R.id.iv_image)
+            texto = itemView.findViewById(R.id.textView1)
+            subTexto=itemView.findViewById(R.id.textView3)
+            rb= itemView.findViewById(R.id.ratingBar)
+            puntos= itemView.findViewById(R.id.textView2)
 
         }
 
@@ -32,6 +37,11 @@ class CafeAdapter(var items: ArrayList<Cafe>) : RecyclerView.Adapter<CafeAdapter
             texto.setText(t.cadena)
             subTexto.setText(t.cadena2)
             setOnClickListener { onClick(itemView) }
+            rb.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener{ ratingBar, rating, fromUser ->
+
+                puntos.text = rb.rating.toString()
+
+            }
         }
     }
 

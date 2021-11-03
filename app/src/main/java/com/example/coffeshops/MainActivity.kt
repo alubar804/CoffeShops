@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.ViewSwitcher
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coffeshops.R
 import com.example.coffeshops.CafeAdapter
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity(),ViewSwitcher.ViewFactory {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //TODO el que tiene las cards es SOL no imagenes pero imagenes tiene el linearmanajer que quieres
+
 
         val items = ArrayList<Cafe>()
         items.add(Cafe(R.drawable.images,R.string.titulo,R.string.subtitulo))
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity(),ViewSwitcher.ViewFactory {
         val adaptador = CafeAdapter(items)
         recView.adapter = adaptador
 
-        recView.layoutManager = GridLayoutManager(this,1)
+        recView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         adaptador.onClick = {
 
 
